@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  interval: 10s
+  chart:
+    spec:
+      chart: prometheus-community/kube-prometheus-stack
+      sourceRef:
+        kind: HelmRepository
+        name: metrics
+        namespace: flux-system
+      interval: 1m
+  values:
+    replicaCount: 1
