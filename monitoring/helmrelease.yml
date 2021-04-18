@@ -8,7 +8,7 @@ spec:
   interval: 10s
   chart:
     spec:
-      chart: prometheus-community/kube-prometheus-stack
+      chart: kube-prometheus-stack
       sourceRef:
         kind: HelmRepository
         name: metrics
