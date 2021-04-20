@@ -1,0 +1,1333 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-service-dashboard
+  namespace: monitoring
+  labels:
+    grafana-sighup-dashboard: default
+data:
+  istio-service-dashboard.json: "{\n  \"annotations\": {\n    \"list\": [\n      {\n
+    \       \"builtIn\": 1,\n        \"datasource\": \"-- Grafana --\",\n        \"enable\":
+    true,\n        \"hide\": true,\n        \"iconColor\": \"rgba(0, 211, 255, 1)\",\n
+    \       \"name\": \"Annotations & Alerts\",\n        \"type\": \"dashboard\"\n
+    \     }\n    ]\n  },\n  \"editable\": false,\n  \"gnetId\": null,\n  \"graphTooltip\":
+    0,\n  \"iteration\": 1595591291797,\n  \"links\": [],\n  \"panels\": [\n    {\n
+    \     \"collapsed\": true,\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\":
+    24,\n        \"x\": 0,\n        \"y\": 0\n      },\n      \"id\": 106,\n      \"panels\":
+    [\n        {\n          \"content\": \"<div class=\\\"dashboard-header text-center\\\">\\n<span>SERVICE:
+    $service</span>\\n</div>\",\n          \"fieldConfig\": {\n            \"defaults\":
+    {\n              \"custom\": {}\n            },\n            \"overrides\": []\n
+    \         },\n          \"gridPos\": {\n            \"h\": 3,\n            \"w\":
+    24,\n            \"x\": 0,\n            \"y\": 1\n          },\n          \"id\":
+    89,\n          \"links\": [],\n          \"mode\": \"html\",\n          \"options\":
+    {\n            \"content\": \"<div class=\\\"dashboard-header text-center\\\">\\n<span>SERVICE:
+    $service</span>\\n</div>\",\n            \"mode\": \"html\"\n          },\n          \"pluginVersion\":
+    \"7.1.0\",\n          \"title\": \"\",\n          \"transparent\": true,\n          \"type\":
+    \"text\"\n        },\n        {\n          \"cacheTimeout\": null,\n          \"colorBackground\":
+    false,\n          \"colorValue\": false,\n          \"colors\": [\n            \"rgba(245,
+    54, 54, 0.9)\",\n            \"rgba(237, 129, 40, 0.89)\",\n            \"rgba(50,
+    172, 45, 0.97)\"\n          ],\n          \"datasource\": \"prometheus\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"format\": \"ops\",\n
+    \         \"gauge\": {\n            \"maxValue\": 100,\n            \"minValue\":
+    0,\n            \"show\": false,\n            \"thresholdLabels\": false,\n            \"thresholdMarkers\":
+    true\n          },\n          \"gridPos\": {\n            \"h\": 4,\n            \"w\":
+    6,\n            \"x\": 0,\n            \"y\": 4\n          },\n          \"id\":
+    12,\n          \"interval\": null,\n          \"links\": [],\n          \"options\":
+    {\n            \"colorMode\": \"value\",\n            \"graphMode\": \"area\",\n
+    \           \"justifyMode\": \"auto\",\n            \"orientation\": \"horizontal\",\n
+    \           \"reduceOptions\": {\n              \"calcs\": [\n                \"lastNotNull\"\n
+    \             ],\n              \"fields\": \"\",\n              \"values\": false\n
+    \           },\n            \"textMode\": \"auto\"\n          },\n          \"mappingType\":
+    1,\n          \"mappingTypes\": [\n            {\n              \"name\": \"value
+    to text\",\n              \"value\": 1\n            },\n            {\n              \"name\":
+    \"range to text\",\n              \"value\": 2\n            }\n          ],\n
+    \         \"maxDataPoints\": 100,\n          \"nullPointMode\": \"connected\",\n
+    \         \"nullText\": null,\n          \"postfix\": \"\",\n          \"postfixFontSize\":
+    \"50%\",\n          \"prefix\": \"\",\n          \"prefixFontSize\": \"50%\",\n
+    \         \"rangeMaps\": [\n            {\n              \"from\": \"null\",\n
+    \             \"text\": \"N/A\",\n              \"to\": \"null\"\n            }\n
+    \         ],\n          \"sparkline\": {\n            \"fillColor\": \"rgba(31,
+    118, 189, 0.18)\",\n            \"full\": true,\n            \"lineColor\": \"rgb(31,
+    120, 193)\",\n            \"show\": true\n          },\n          \"tableColumn\":
+    \"\",\n          \"targets\": [\n            {\n              \"expr\": \"round(sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[5m])),
+    0.001)\",\n              \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"refId\": \"A\",\n              \"step\": 4\n            }\n
+    \         ],\n          \"thresholds\": \"\",\n          \"title\": \"Client Request
+    Volume\",\n          \"type\": \"singlestat\",\n          \"valueFontSize\": \"80%\",\n
+    \         \"valueMaps\": [\n            {\n              \"op\": \"=\",\n              \"text\":
+    \"N/A\",\n              \"value\": \"null\"\n            }\n          ],\n          \"valueName\":
+    \"current\"\n        },\n        {\n          \"cacheTimeout\": null,\n          \"colorBackground\":
+    false,\n          \"colorValue\": false,\n          \"colors\": [\n            \"rgba(50,
+    172, 45, 0.97)\",\n            \"rgba(237, 129, 40, 0.89)\",\n            \"rgba(245,
+    54, 54, 0.9)\"\n          ],\n          \"datasource\": \"prometheus\",\n          \"decimals\":
+    null,\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"format\":
+    \"percentunit\",\n          \"gauge\": {\n            \"maxValue\": 100,\n            \"minValue\":
+    80,\n            \"show\": false,\n            \"thresholdLabels\": false,\n            \"thresholdMarkers\":
+    false\n          },\n          \"gridPos\": {\n            \"h\": 4,\n            \"w\":
+    6,\n            \"x\": 6,\n            \"y\": 4\n          },\n          \"id\":
+    14,\n          \"interval\": null,\n          \"links\": [],\n          \"options\":
+    {\n            \"colorMode\": \"value\",\n            \"graphMode\": \"area\",\n
+    \           \"justifyMode\": \"auto\",\n            \"orientation\": \"horizontal\",\n
+    \           \"reduceOptions\": {\n              \"calcs\": [\n                \"lastNotNull\"\n
+    \             ],\n              \"fields\": \"\",\n              \"values\": false\n
+    \           },\n            \"textMode\": \"auto\"\n          },\n          \"mappingType\":
+    1,\n          \"mappingTypes\": [\n            {\n              \"name\": \"value
+    to text\",\n              \"value\": 1\n            },\n            {\n              \"name\":
+    \"range to text\",\n              \"value\": 2\n            }\n          ],\n
+    \         \"maxDataPoints\": 100,\n          \"nullPointMode\": \"connected\",\n
+    \         \"nullText\": null,\n          \"postfix\": \"\",\n          \"postfixFontSize\":
+    \"50%\",\n          \"prefix\": \"\",\n          \"prefixFontSize\": \"50%\",\n
+    \         \"rangeMaps\": [\n            {\n              \"from\": \"null\",\n
+    \             \"text\": \"N/A\",\n              \"to\": \"null\"\n            }\n
+    \         ],\n          \"sparkline\": {\n            \"fillColor\": \"rgba(31,
+    118, 189, 0.18)\",\n            \"full\": true,\n            \"lineColor\": \"rgb(31,
+    120, 193)\",\n            \"show\": true\n          },\n          \"tableColumn\":
+    \"\",\n          \"targets\": [\n            {\n              \"expr\": \"sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\",response_code!~\\\"5.*\\\"}[5m]))
+    / sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[5m]))\",\n
+    \             \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"refId\": \"A\"\n            }\n          ],\n          \"thresholds\":
+    \"95, 99, 99.5\",\n          \"title\": \"Client Success Rate (non-5xx responses)\",\n
+    \         \"type\": \"singlestat\",\n          \"valueFontSize\": \"80%\",\n          \"valueMaps\":
+    [\n            {\n              \"op\": \"=\",\n              \"text\": \"N/A\",\n
+    \             \"value\": \"null\"\n            }\n          ],\n          \"valueName\":
+    \"avg\"\n        },\n        {\n          \"aliasColors\": {},\n          \"bars\":
+    false,\n          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    4,\n            \"w\": 6,\n            \"x\": 12,\n            \"y\": 4\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 87,\n          \"legend\":
+    {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\":
+    false,\n            \"hideEmpty\": false,\n            \"hideZero\": false,\n
+    \           \"max\": false,\n            \"min\": false,\n            \"rightSide\":
+    true,\n            \"show\": true,\n            \"total\": false,\n            \"values\":
+    false\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n
+    \         \"links\": [],\n          \"nullPointMode\": \"null\",\n          \"percentage\":
+    false,\n          \"pluginVersion\": \"7.1.0\",\n          \"pointradius\": 5,\n
+    \         \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\":
+    [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\":
+    false,\n          \"targets\": [\n            {\n              \"expr\": \"(histogram_quantile(0.50,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le)) / 1000) or histogram_quantile(0.50, sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le))\",\n              \"format\": \"time_series\",\n              \"interval\":
+    \"\",\n              \"intervalFactor\": 1,\n              \"legendFormat\": \"P50\",\n
+    \             \"refId\": \"A\"\n            },\n            {\n              \"expr\":
+    \"(histogram_quantile(0.90, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le)) / 1000) or histogram_quantile(0.90, sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le))\",\n              \"format\": \"time_series\",\n              \"hide\":
+    false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"P90\",\n              \"refId\": \"B\"\n            },\n            {\n              \"expr\":
+    \"(histogram_quantile(0.99, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le)) / 1000) or histogram_quantile(0.99, sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le))\",\n              \"format\": \"time_series\",\n              \"hide\":
+    false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"P99\",\n              \"refId\": \"C\"\n            }\n          ],\n          \"thresholds\":
+    [],\n          \"timeFrom\": null,\n          \"timeRegions\": [],\n          \"timeShift\":
+    null,\n          \"title\": \"Client Request Duration\",\n          \"tooltip\":
+    {\n            \"shared\": true,\n            \"sort\": 0,\n            \"value_type\":
+    \"individual\"\n          },\n          \"type\": \"graph\",\n          \"xaxis\":
+    {\n            \"buckets\": null,\n            \"mode\": \"time\",\n            \"name\":
+    null,\n            \"show\": true,\n            \"values\": []\n          },\n
+    \         \"yaxes\": [\n            {\n              \"format\": \"s\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": true\n            },\n            {\n              \"format\":
+    \"short\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": null,\n              \"show\": false\n            }\n
+    \         ],\n          \"yaxis\": {\n            \"align\": false,\n            \"alignLevel\":
+    null\n          }\n        },\n        {\n          \"cacheTimeout\": null,\n
+    \         \"colorBackground\": false,\n          \"colorValue\": false,\n          \"colors\":
+    [\n            \"#299c46\",\n            \"rgba(237, 129, 40, 0.89)\",\n            \"#d44a3a\"\n
+    \         ],\n          \"datasource\": \"prometheus\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"format\": \"Bps\",\n
+    \         \"gauge\": {\n            \"maxValue\": 100,\n            \"minValue\":
+    0,\n            \"show\": false,\n            \"thresholdLabels\": false,\n            \"thresholdMarkers\":
+    true\n          },\n          \"gridPos\": {\n            \"h\": 4,\n            \"w\":
+    6,\n            \"x\": 18,\n            \"y\": 4\n          },\n          \"id\":
+    84,\n          \"interval\": null,\n          \"links\": [],\n          \"options\":
+    {\n            \"colorMode\": \"value\",\n            \"graphMode\": \"area\",\n
+    \           \"justifyMode\": \"auto\",\n            \"orientation\": \"horizontal\",\n
+    \           \"reduceOptions\": {\n              \"calcs\": [\n                \"lastNotNull\"\n
+    \             ],\n              \"fields\": \"\",\n              \"values\": false\n
+    \           },\n            \"textMode\": \"auto\"\n          },\n          \"mappingType\":
+    1,\n          \"mappingTypes\": [\n            {\n              \"name\": \"value
+    to text\",\n              \"value\": 1\n            },\n            {\n              \"name\":
+    \"range to text\",\n              \"value\": 2\n            }\n          ],\n
+    \         \"maxDataPoints\": 100,\n          \"nullPointMode\": \"connected\",\n
+    \         \"nullText\": null,\n          \"postfix\": \"\",\n          \"postfixFontSize\":
+    \"50%\",\n          \"prefix\": \"\",\n          \"prefixFontSize\": \"50%\",\n
+    \         \"rangeMaps\": [\n            {\n              \"from\": \"null\",\n
+    \             \"text\": \"N/A\",\n              \"to\": \"null\"\n            }\n
+    \         ],\n          \"sparkline\": {\n            \"fillColor\": \"rgba(31,
+    118, 189, 0.18)\",\n            \"full\": true,\n            \"lineColor\": \"rgb(31,
+    120, 193)\",\n            \"show\": true\n          },\n          \"tableColumn\":
+    \"\",\n          \"targets\": [\n            {\n              \"expr\": \"sum(irate(istio_tcp_received_bytes_total{reporter=\\\"$qrep\\\",
+    destination_service=~\\\"$service\\\"}[1m]))\",\n              \"format\": \"time_series\",\n
+    \             \"hide\": false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"\",\n              \"refId\": \"A\"\n            }\n          ],\n          \"thresholds\":
+    \"\",\n          \"title\": \"TCP Received Bytes\",\n          \"type\": \"singlestat\",\n
+    \         \"valueFontSize\": \"80%\",\n          \"valueMaps\": [\n            {\n
+    \             \"op\": \"=\",\n              \"text\": \"N/A\",\n              \"value\":
+    \"null\"\n            }\n          ],\n          \"valueName\": \"avg\"\n        },\n
+    \       {\n          \"cacheTimeout\": null,\n          \"colorBackground\": false,\n
+    \         \"colorValue\": false,\n          \"colors\": [\n            \"rgba(245,
+    54, 54, 0.9)\",\n            \"rgba(237, 129, 40, 0.89)\",\n            \"rgba(50,
+    172, 45, 0.97)\"\n          ],\n          \"datasource\": \"prometheus\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"format\": \"ops\",\n
+    \         \"gauge\": {\n            \"maxValue\": 100,\n            \"minValue\":
+    0,\n            \"show\": false,\n            \"thresholdLabels\": false,\n            \"thresholdMarkers\":
+    true\n          },\n          \"gridPos\": {\n            \"h\": 4,\n            \"w\":
+    6,\n            \"x\": 0,\n            \"y\": 8\n          },\n          \"id\":
+    97,\n          \"interval\": null,\n          \"links\": [],\n          \"options\":
+    {\n            \"colorMode\": \"value\",\n            \"graphMode\": \"area\",\n
+    \           \"justifyMode\": \"auto\",\n            \"orientation\": \"horizontal\",\n
+    \           \"reduceOptions\": {\n              \"calcs\": [\n                \"lastNotNull\"\n
+    \             ],\n              \"fields\": \"\",\n              \"values\": false\n
+    \           },\n            \"textMode\": \"auto\"\n          },\n          \"mappingType\":
+    1,\n          \"mappingTypes\": [\n            {\n              \"name\": \"value
+    to text\",\n              \"value\": 1\n            },\n            {\n              \"name\":
+    \"range to text\",\n              \"value\": 2\n            }\n          ],\n
+    \         \"maxDataPoints\": 100,\n          \"nullPointMode\": \"connected\",\n
+    \         \"nullText\": null,\n          \"postfix\": \"\",\n          \"postfixFontSize\":
+    \"50%\",\n          \"prefix\": \"\",\n          \"prefixFontSize\": \"50%\",\n
+    \         \"rangeMaps\": [\n            {\n              \"from\": \"null\",\n
+    \             \"text\": \"N/A\",\n              \"to\": \"null\"\n            }\n
+    \         ],\n          \"sparkline\": {\n            \"fillColor\": \"rgba(31,
+    118, 189, 0.18)\",\n            \"full\": true,\n            \"lineColor\": \"rgb(31,
+    120, 193)\",\n            \"show\": true\n          },\n          \"tableColumn\":
+    \"\",\n          \"targets\": [\n            {\n              \"expr\": \"round(sum(irate(istio_requests_total{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[5m])),
+    0.001)\",\n              \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"refId\": \"A\",\n              \"step\": 4\n            }\n
+    \         ],\n          \"thresholds\": \"\",\n          \"title\": \"Server Request
+    Volume\",\n          \"type\": \"singlestat\",\n          \"valueFontSize\": \"80%\",\n
+    \         \"valueMaps\": [\n            {\n              \"op\": \"=\",\n              \"text\":
+    \"N/A\",\n              \"value\": \"null\"\n            }\n          ],\n          \"valueName\":
+    \"current\"\n        },\n        {\n          \"cacheTimeout\": null,\n          \"colorBackground\":
+    false,\n          \"colorValue\": false,\n          \"colors\": [\n            \"rgba(50,
+    172, 45, 0.97)\",\n            \"rgba(237, 129, 40, 0.89)\",\n            \"rgba(245,
+    54, 54, 0.9)\"\n          ],\n          \"datasource\": \"prometheus\",\n          \"decimals\":
+    null,\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"format\":
+    \"percentunit\",\n          \"gauge\": {\n            \"maxValue\": 100,\n            \"minValue\":
+    80,\n            \"show\": false,\n            \"thresholdLabels\": false,\n            \"thresholdMarkers\":
+    false\n          },\n          \"gridPos\": {\n            \"h\": 4,\n            \"w\":
+    6,\n            \"x\": 6,\n            \"y\": 8\n          },\n          \"id\":
+    98,\n          \"interval\": null,\n          \"links\": [],\n          \"options\":
+    {\n            \"colorMode\": \"value\",\n            \"graphMode\": \"area\",\n
+    \           \"justifyMode\": \"auto\",\n            \"orientation\": \"horizontal\",\n
+    \           \"reduceOptions\": {\n              \"calcs\": [\n                \"lastNotNull\"\n
+    \             ],\n              \"fields\": \"\",\n              \"values\": false\n
+    \           },\n            \"textMode\": \"auto\"\n          },\n          \"mappingType\":
+    1,\n          \"mappingTypes\": [\n            {\n              \"name\": \"value
+    to text\",\n              \"value\": 1\n            },\n            {\n              \"name\":
+    \"range to text\",\n              \"value\": 2\n            }\n          ],\n
+    \         \"maxDataPoints\": 100,\n          \"nullPointMode\": \"connected\",\n
+    \         \"nullText\": null,\n          \"postfix\": \"\",\n          \"postfixFontSize\":
+    \"50%\",\n          \"prefix\": \"\",\n          \"prefixFontSize\": \"50%\",\n
+    \         \"rangeMaps\": [\n            {\n              \"from\": \"null\",\n
+    \             \"text\": \"N/A\",\n              \"to\": \"null\"\n            }\n
+    \         ],\n          \"sparkline\": {\n            \"fillColor\": \"rgba(31,
+    118, 189, 0.18)\",\n            \"full\": true,\n            \"lineColor\": \"rgb(31,
+    120, 193)\",\n            \"show\": true\n          },\n          \"tableColumn\":
+    \"\",\n          \"targets\": [\n            {\n              \"expr\": \"sum(irate(istio_requests_total{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\",response_code!~\\\"5.*\\\"}[5m]))
+    / sum(irate(istio_requests_total{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[5m]))\",\n
+    \             \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"refId\": \"A\"\n            }\n          ],\n          \"thresholds\":
+    \"95, 99, 99.5\",\n          \"title\": \"Server Success Rate (non-5xx responses)\",\n
+    \         \"type\": \"singlestat\",\n          \"valueFontSize\": \"80%\",\n          \"valueMaps\":
+    [\n            {\n              \"op\": \"=\",\n              \"text\": \"N/A\",\n
+    \             \"value\": \"null\"\n            }\n          ],\n          \"valueName\":
+    \"avg\"\n        },\n        {\n          \"aliasColors\": {},\n          \"bars\":
+    false,\n          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    4,\n            \"w\": 6,\n            \"x\": 12,\n            \"y\": 8\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 99,\n          \"legend\":
+    {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\":
+    false,\n            \"hideEmpty\": false,\n            \"hideZero\": false,\n
+    \           \"max\": false,\n            \"min\": false,\n            \"rightSide\":
+    true,\n            \"show\": true,\n            \"total\": false,\n            \"values\":
+    false\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n
+    \         \"links\": [],\n          \"nullPointMode\": \"null\",\n          \"percentage\":
+    false,\n          \"pluginVersion\": \"7.1.0\",\n          \"pointradius\": 5,\n
+    \         \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\":
+    [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\":
+    false,\n          \"targets\": [\n            {\n              \"expr\": \"(histogram_quantile(0.50,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le)) / 1000) or histogram_quantile(0.50, sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le))\",\n              \"format\": \"time_series\",\n              \"interval\":
+    \"\",\n              \"intervalFactor\": 1,\n              \"legendFormat\": \"P50\",\n
+    \             \"refId\": \"A\"\n            },\n            {\n              \"expr\":
+    \"(histogram_quantile(0.90, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le)) / 1000) or histogram_quantile(0.90, sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le))\",\n              \"format\": \"time_series\",\n              \"hide\":
+    false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"P90\",\n              \"refId\": \"B\"\n            },\n            {\n              \"expr\":
+    \"(histogram_quantile(0.99, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le)) / 1000) or histogram_quantile(0.99, sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",destination_service=~\\\"$service\\\"}[1m]))
+    by (le))\",\n              \"format\": \"time_series\",\n              \"hide\":
+    false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"P99\",\n              \"refId\": \"C\"\n            }\n          ],\n          \"thresholds\":
+    [],\n          \"timeFrom\": null,\n          \"timeRegions\": [],\n          \"timeShift\":
+    null,\n          \"title\": \"Server Request Duration\",\n          \"tooltip\":
+    {\n            \"shared\": true,\n            \"sort\": 0,\n            \"value_type\":
+    \"individual\"\n          },\n          \"type\": \"graph\",\n          \"xaxis\":
+    {\n            \"buckets\": null,\n            \"mode\": \"time\",\n            \"name\":
+    null,\n            \"show\": true,\n            \"values\": []\n          },\n
+    \         \"yaxes\": [\n            {\n              \"format\": \"s\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": true\n            },\n            {\n              \"format\":
+    \"short\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": null,\n              \"show\": false\n            }\n
+    \         ],\n          \"yaxis\": {\n            \"align\": false,\n            \"alignLevel\":
+    null\n          }\n        },\n        {\n          \"cacheTimeout\": null,\n
+    \         \"colorBackground\": false,\n          \"colorValue\": false,\n          \"colors\":
+    [\n            \"#299c46\",\n            \"rgba(237, 129, 40, 0.89)\",\n            \"#d44a3a\"\n
+    \         ],\n          \"datasource\": \"prometheus\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"format\": \"Bps\",\n
+    \         \"gauge\": {\n            \"maxValue\": 100,\n            \"minValue\":
+    0,\n            \"show\": false,\n            \"thresholdLabels\": false,\n            \"thresholdMarkers\":
+    true\n          },\n          \"gridPos\": {\n            \"h\": 4,\n            \"w\":
+    6,\n            \"x\": 18,\n            \"y\": 8\n          },\n          \"id\":
+    100,\n          \"interval\": null,\n          \"links\": [],\n          \"options\":
+    {\n            \"colorMode\": \"value\",\n            \"graphMode\": \"area\",\n
+    \           \"justifyMode\": \"auto\",\n            \"orientation\": \"horizontal\",\n
+    \           \"reduceOptions\": {\n              \"calcs\": [\n                \"lastNotNull\"\n
+    \             ],\n              \"fields\": \"\",\n              \"values\": false\n
+    \           },\n            \"textMode\": \"auto\"\n          },\n          \"mappingType\":
+    1,\n          \"mappingTypes\": [\n            {\n              \"name\": \"value
+    to text\",\n              \"value\": 1\n            },\n            {\n              \"name\":
+    \"range to text\",\n              \"value\": 2\n            }\n          ],\n
+    \         \"maxDataPoints\": 100,\n          \"nullPointMode\": \"connected\",\n
+    \         \"nullText\": null,\n          \"postfix\": \"\",\n          \"postfixFontSize\":
+    \"50%\",\n          \"prefix\": \"\",\n          \"prefixFontSize\": \"50%\",\n
+    \         \"rangeMaps\": [\n            {\n              \"from\": \"null\",\n
+    \             \"text\": \"N/A\",\n              \"to\": \"null\"\n            }\n
+    \         ],\n          \"sparkline\": {\n            \"fillColor\": \"rgba(31,
+    118, 189, 0.18)\",\n            \"full\": true,\n            \"lineColor\": \"rgb(31,
+    120, 193)\",\n            \"show\": true\n          },\n          \"tableColumn\":
+    \"\",\n          \"targets\": [\n            {\n              \"expr\": \"sum(irate(istio_tcp_sent_bytes_total{reporter=\\\"$qrep\\\",
+    destination_service=~\\\"$service\\\"}[1m]))\",\n              \"format\": \"time_series\",\n
+    \             \"hide\": false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"\",\n              \"refId\": \"A\"\n            }\n          ],\n          \"thresholds\":
+    \"\",\n          \"title\": \"TCP Sent Bytes\",\n          \"type\": \"singlestat\",\n
+    \         \"valueFontSize\": \"80%\",\n          \"valueMaps\": [\n            {\n
+    \             \"op\": \"=\",\n              \"text\": \"N/A\",\n              \"value\":
+    \"null\"\n            }\n          ],\n          \"valueName\": \"avg\"\n        }\n
+    \     ],\n      \"title\": \"General\",\n      \"type\": \"row\"\n    },\n    {\n
+    \     \"collapsed\": true,\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\":
+    24,\n        \"x\": 0,\n        \"y\": 1\n      },\n      \"id\": 104,\n      \"panels\":
+    [\n        {\n          \"content\": \"<div class=\\\"dashboard-header text-center\\\">\\n<span>CLIENT
+    WORKLOADS</span>\\n</div>\",\n          \"fieldConfig\": {\n            \"defaults\":
+    {\n              \"custom\": {}\n            },\n            \"overrides\": []\n
+    \         },\n          \"gridPos\": {\n            \"h\": 3,\n            \"w\":
+    24,\n            \"x\": 0,\n            \"y\": 2\n          },\n          \"id\":
+    45,\n          \"links\": [],\n          \"mode\": \"html\",\n          \"options\":
+    {\n            \"content\": \"<div class=\\\"dashboard-header text-center\\\">\\n<span>CLIENT
+    WORKLOADS</span>\\n</div>\",\n            \"mode\": \"html\"\n          },\n          \"pluginVersion\":
+    \"7.1.0\",\n          \"title\": \"\",\n          \"transparent\": true,\n          \"type\":
+    \"text\"\n        },\n        {\n          \"aliasColors\": {},\n          \"bars\":
+    false,\n          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    0,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 0,\n            \"y\": 5\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 25,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\":
+    true,\n            \"max\": false,\n            \"min\": false,\n            \"show\":
+    true,\n            \"total\": false,\n            \"values\": false\n          },\n
+    \         \"lines\": true,\n          \"linewidth\": 1,\n          \"links\":
+    [],\n          \"nullPointMode\": \"null as zero\",\n          \"percentage\":
+    false,\n          \"pluginVersion\": \"7.1.0\",\n          \"pointradius\": 5,\n
+    \         \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\":
+    [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\":
+    false,\n          \"targets\": [\n            {\n              \"expr\": \"round(sum(irate(istio_requests_total{connection_security_policy=\\\"mutual_tls\\\",destination_service=~\\\"$service\\\",reporter=\\\"$qrep\\\",source_workload=~\\\"$srcwl\\\",source_workload_namespace=~\\\"$srcns\\\"}[5m]))
+    by (source_workload, source_workload_namespace, response_code), 0.001)\",\n              \"format\":
+    \"time_series\",\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"{{ source_workload }}.{{ source_workload_namespace }} : {{ response_code }}
+    (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"round(sum(irate(istio_requests_total{connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", reporter=\\\"$qrep\\\", source_workload=~\\\"$srcwl\\\",
+    source_workload_namespace=~\\\"$srcns\\\"}[5m])) by (source_workload, source_workload_namespace,
+    response_code), 0.001)\",\n              \"format\": \"time_series\",\n              \"hide\":
+    false,\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"{{ source_workload }}.{{ source_workload_namespace }} : {{ response_code }}\",\n
+    \             \"refId\": \"B\",\n              \"step\": 2\n            }\n          ],\n
+    \         \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Requests
+    By Source And Response Code\",\n          \"tooltip\": {\n            \"shared\":
+    false,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n
+    \         },\n          \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\":
+    null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\":
+    true,\n            \"values\": [\n              \"total\"\n            ]\n          },\n
+    \         \"yaxes\": [\n            {\n              \"format\": \"ops\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    \"0\",\n              \"show\": true\n            },\n            {\n              \"format\":
+    \"short\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": null,\n              \"show\": false\n            }\n
+    \         ],\n          \"yaxis\": {\n            \"align\": false,\n            \"alignLevel\":
+    null\n          }\n        },\n        {\n          \"aliasColors\": {},\n          \"bars\":
+    false,\n          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 12,\n            \"y\": 5\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 26,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\":
+    true,\n            \"hideZero\": false,\n            \"max\": false,\n            \"min\":
+    false,\n            \"show\": true,\n            \"total\": false,\n            \"values\":
+    false\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n
+    \         \"links\": [],\n          \"nullPointMode\": \"null\",\n          \"percentage\":
+    false,\n          \"pluginVersion\": \"7.1.0\",\n          \"pointradius\": 5,\n
+    \         \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\":
+    [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\":
+    false,\n          \"targets\": [\n            {\n              \"expr\": \"sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",response_code!~\\\"5.*\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[5m]))
+    by (source_workload, source_workload_namespace) / sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[5m]))
+    by (source_workload, source_workload_namespace)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ source_workload }}.{{ source_workload_namespace
+    }} (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",response_code!~\\\"5.*\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[5m]))
+    by (source_workload, source_workload_namespace) / sum(irate(istio_requests_total{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[5m]))
+    by (source_workload, source_workload_namespace)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ source_workload }}.{{ source_workload_namespace
+    }}\",\n              \"refId\": \"B\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Success Rate
+    (non-5xx responses) By Source\",\n          \"tooltip\": {\n            \"shared\":
+    true,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n
+    \         },\n          \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\":
+    null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\":
+    true,\n            \"values\": []\n          },\n          \"yaxes\": [\n            {\n
+    \             \"format\": \"percentunit\",\n              \"label\": null,\n              \"logBase\":
+    1,\n              \"max\": \"1.01\",\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"description\": \"\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"fill\": 1,\n          \"fillGradient\":
+    0,\n          \"gridPos\": {\n            \"h\": 6,\n            \"w\": 8,\n            \"x\":
+    0,\n            \"y\": 11\n          },\n          \"hiddenSeries\": false,\n
+    \         \"id\": 27,\n          \"legend\": {\n            \"alignAsTable\":
+    false,\n            \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\":
+    true,\n            \"hideZero\": false,\n            \"max\": false,\n            \"min\":
+    false,\n            \"rightSide\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"(histogram_quantile(0.50, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.50,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P50 (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.90,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.90,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P90 (\U0001F510mTLS)\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.95,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.95,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P95 (\U0001F510mTLS)\",\n              \"refId\": \"C\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.99,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.99,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P99 (\U0001F510mTLS)\",\n              \"refId\": \"D\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.50,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.50,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P50\",\n              \"refId\": \"E\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"(histogram_quantile(0.90, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.90,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P90\",\n              \"refId\": \"F\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"(histogram_quantile(0.95, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.95,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P95\",\n              \"refId\": \"G\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"(histogram_quantile(0.99, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le)) / 1000) or histogram_quantile(0.99,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P99\",\n              \"refId\": \"H\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Request Duration
+    By Source\",\n          \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"s\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": \"0\",\n              \"show\": true\n            },\n
+    \           {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 8,\n            \"x\": 8,\n            \"y\": 11\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 28,\n          \"legend\":
+    {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\":
+    false,\n            \"hideEmpty\": true,\n            \"max\": false,\n            \"min\":
+    false,\n            \"rightSide\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"histogram_quantile(0.50, sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P50 (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.90,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    \ P90 (\U0001F510mTLS)\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.95,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P95 (\U0001F510mTLS)\",\n              \"refId\": \"C\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.99,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    \ P99 (\U0001F510mTLS)\",\n              \"refId\": \"D\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.50,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P50\",\n              \"refId\": \"E\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.90, sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P90\",\n              \"refId\": \"F\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.95, sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P95\",\n              \"refId\": \"G\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.99, sum(irate(istio_request_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P99\",\n              \"refId\": \"H\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Request Size
+    By Source\",\n          \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"decbytes\",\n              \"label\": null,\n              \"logBase\": 1,\n
+    \             \"max\": null,\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 8,\n            \"x\": 16,\n            \"y\": 11\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 68,\n          \"legend\":
+    {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\":
+    false,\n            \"hideEmpty\": true,\n            \"max\": false,\n            \"min\":
+    false,\n            \"rightSide\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"histogram_quantile(0.50, sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P50 (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.90,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    \ P90 (\U0001F510mTLS)\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.95,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P95 (\U0001F510mTLS)\",\n              \"refId\": \"C\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.99,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    \ P99 (\U0001F510mTLS)\",\n              \"refId\": \"D\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.50,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P50\",\n              \"refId\": \"E\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.90, sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P90\",\n              \"refId\": \"F\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.95, sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P95\",\n              \"refId\": \"G\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.99, sum(irate(istio_response_bytes_bucket{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{source_workload}}.{{source_workload_namespace}}
+    P99\",\n              \"refId\": \"H\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Response Size By Source\",\n
+    \         \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"decbytes\",\n              \"label\": null,\n              \"logBase\": 1,\n
+    \             \"max\": null,\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 0,\n            \"y\": 17\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 80,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"max\":
+    false,\n            \"min\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_received_bytes_total{reporter=\\\"$qrep\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace), 0.001)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ source_workload }}.{{ source_workload_namespace}}
+    (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_received_bytes_total{reporter=\\\"$qrep\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    source_workload=~\\\"$srcwl\\\", source_workload_namespace=~\\\"$srcns\\\"}[1m]))
+    by (source_workload, source_workload_namespace), 0.001)\",\n              \"format\":
+    \"time_series\",\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"{{ source_workload }}.{{ source_workload_namespace}}\",\n              \"refId\":
+    \"B\",\n              \"step\": 2\n            }\n          ],\n          \"thresholds\":
+    [],\n          \"timeFrom\": null,\n          \"timeRegions\": [],\n          \"timeShift\":
+    null,\n          \"title\": \"Bytes Received from Incoming TCP Connection\",\n
+    \         \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"Bps\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": \"0\",\n              \"show\": true\n            },\n
+    \           {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": true\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 12,\n            \"y\": 17\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 82,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"max\":
+    false,\n            \"min\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_sent_bytes_total{connection_security_policy=\\\"mutual_tls\\\",
+    reporter=\\\"$qrep\\\", destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\",
+    source_workload_namespace=~\\\"$srcns\\\"}[1m])) by (source_workload, source_workload_namespace),
+    0.001)\",\n              \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ source_workload }}.{{ source_workload_namespace}}
+    (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_sent_bytes_total{connection_security_policy!=\\\"mutual_tls\\\",
+    reporter=\\\"$qrep\\\", destination_service=~\\\"$service\\\", source_workload=~\\\"$srcwl\\\",
+    source_workload_namespace=~\\\"$srcns\\\"}[1m])) by (source_workload, source_workload_namespace),
+    0.001)\",\n              \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ source_workload }}.{{ source_workload_namespace}}\",\n
+    \             \"refId\": \"B\",\n              \"step\": 2\n            }\n          ],\n
+    \         \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Bytes Sent to Incoming
+    TCP Connection\",\n          \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"Bps\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": \"0\",\n              \"show\": true\n            },\n
+    \           {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": true\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       }\n      ],\n      \"title\": \"Client Workloads\",\n      \"type\": \"row\"\n
+    \   },\n    {\n      \"collapsed\": true,\n      \"gridPos\": {\n        \"h\":
+    1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 2\n      },\n      \"id\":
+    102,\n      \"panels\": [\n        {\n          \"content\": \"<div class=\\\"dashboard-header
+    text-center\\\">\\n<span>SERVICE WORKLOADS</span>\\n</div>\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"gridPos\": {\n            \"h\":
+    3,\n            \"w\": 24,\n            \"x\": 0,\n            \"y\": 3\n          },\n
+    \         \"id\": 69,\n          \"links\": [],\n          \"mode\": \"html\",\n
+    \         \"options\": {\n            \"content\": \"<div class=\\\"dashboard-header
+    text-center\\\">\\n<span>SERVICE WORKLOADS</span>\\n</div>\",\n            \"mode\":
+    \"html\"\n          },\n          \"pluginVersion\": \"7.1.0\",\n          \"title\":
+    \"\",\n          \"transparent\": true,\n          \"type\": \"text\"\n        },\n
+    \       {\n          \"aliasColors\": {},\n          \"bars\": false,\n          \"dashLength\":
+    10,\n          \"dashes\": false,\n          \"datasource\": \"prometheus\",\n
+    \         \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    0,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 0,\n            \"y\": 6\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 90,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\":
+    true,\n            \"max\": false,\n            \"min\": false,\n            \"show\":
+    true,\n            \"total\": false,\n            \"values\": false\n          },\n
+    \         \"lines\": true,\n          \"linewidth\": 1,\n          \"links\":
+    [],\n          \"nullPointMode\": \"null as zero\",\n          \"percentage\":
+    false,\n          \"pluginVersion\": \"7.1.0\",\n          \"pointradius\": 5,\n
+    \         \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\":
+    [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\":
+    false,\n          \"targets\": [\n            {\n              \"expr\": \"round(sum(irate(istio_requests_total{connection_security_policy=\\\"mutual_tls\\\",destination_service=~\\\"$service\\\",reporter=\\\"destination\\\",destination_workload=~\\\"$dstwl\\\",destination_workload_namespace=~\\\"$dstns\\\"}[5m]))
+    by (destination_workload, destination_workload_namespace, response_code), 0.001)\",\n
+    \             \"format\": \"time_series\",\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} : {{ response_code }} (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n
+    \             \"step\": 2\n            },\n            {\n              \"expr\":
+    \"round(sum(irate(istio_requests_total{connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", reporter=\\\"destination\\\", destination_workload=~\\\"$dstwl\\\",
+    destination_workload_namespace=~\\\"$dstns\\\"}[5m])) by (destination_workload,
+    destination_workload_namespace, response_code), 0.001)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} : {{ response_code }}\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            }\n          ],\n          \"thresholds\": [],\n          \"timeFrom\":
+    null,\n          \"timeRegions\": [],\n          \"timeShift\": null,\n          \"title\":
+    \"Incoming Requests By Destination Workload And Response Code\",\n          \"tooltip\":
+    {\n            \"shared\": false,\n            \"sort\": 0,\n            \"value_type\":
+    \"individual\"\n          },\n          \"type\": \"graph\",\n          \"xaxis\":
+    {\n            \"buckets\": null,\n            \"mode\": \"time\",\n            \"name\":
+    null,\n            \"show\": true,\n            \"values\": [\n              \"total\"\n
+    \           ]\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"ops\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": \"0\",\n              \"show\": true\n            },\n
+    \           {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 12,\n            \"y\": 6\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 91,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\":
+    true,\n            \"hideZero\": false,\n            \"max\": false,\n            \"min\":
+    false,\n            \"show\": true,\n            \"total\": false,\n            \"values\":
+    false\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n
+    \         \"links\": [],\n          \"nullPointMode\": \"null\",\n          \"percentage\":
+    false,\n          \"pluginVersion\": \"7.1.0\",\n          \"pointradius\": 5,\n
+    \         \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\":
+    [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n          \"steppedLine\":
+    false,\n          \"targets\": [\n            {\n              \"expr\": \"sum(irate(istio_requests_total{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",response_code!~\\\"5.*\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[5m]))
+    by (destination_workload, destination_workload_namespace) / sum(irate(istio_requests_total{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[5m]))
+    by (destination_workload, destination_workload_namespace)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"sum(irate(istio_requests_total{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",response_code!~\\\"5.*\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[5m]))
+    by (destination_workload, destination_workload_namespace) / sum(irate(istio_requests_total{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[5m]))
+    by (destination_workload, destination_workload_namespace)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }}\",\n              \"refId\": \"B\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Success Rate
+    (non-5xx responses) By Destination Workload\",\n          \"tooltip\": {\n            \"shared\":
+    true,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n
+    \         },\n          \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\":
+    null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\":
+    true,\n            \"values\": []\n          },\n          \"yaxes\": [\n            {\n
+    \             \"format\": \"percentunit\",\n              \"label\": null,\n              \"logBase\":
+    1,\n              \"max\": \"1.01\",\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"description\": \"\",\n          \"fieldConfig\":
+    {\n            \"defaults\": {\n              \"custom\": {}\n            },\n
+    \           \"overrides\": []\n          },\n          \"fill\": 1,\n          \"fillGradient\":
+    0,\n          \"gridPos\": {\n            \"h\": 6,\n            \"w\": 8,\n            \"x\":
+    0,\n            \"y\": 12\n          },\n          \"hiddenSeries\": false,\n
+    \         \"id\": 94,\n          \"legend\": {\n            \"alignAsTable\":
+    false,\n            \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\":
+    true,\n            \"hideZero\": false,\n            \"max\": false,\n            \"min\":
+    false,\n            \"rightSide\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"(histogram_quantile(0.50, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.50,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P50 (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.90,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.90,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P90 (\U0001F510mTLS)\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.95,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.95,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P95 (\U0001F510mTLS)\",\n              \"refId\": \"C\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.99,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.99,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P99 (\U0001F510mTLS)\",\n              \"refId\": \"D\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"(histogram_quantile(0.50,
+    sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.50,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P50\",\n              \"refId\": \"E\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"(histogram_quantile(0.90, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.90,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P90\",\n              \"refId\": \"F\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"(histogram_quantile(0.95, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.95,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P95\",\n              \"refId\": \"G\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"(histogram_quantile(0.99, sum(irate(istio_request_duration_milliseconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le)) / 1000) or histogram_quantile(0.99,
+    sum(irate(istio_request_duration_seconds_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P99\",\n              \"refId\": \"H\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Request Duration
+    By Service Workload\",\n          \"tooltip\": {\n            \"shared\": true,\n
+    \           \"sort\": 0,\n            \"value_type\": \"individual\"\n          },\n
+    \         \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\":
+    null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\":
+    true,\n            \"values\": []\n          },\n          \"yaxes\": [\n            {\n
+    \             \"format\": \"s\",\n              \"label\": null,\n              \"logBase\":
+    1,\n              \"max\": null,\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 8,\n            \"x\": 8,\n            \"y\": 12\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 95,\n          \"legend\":
+    {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\":
+    false,\n            \"hideEmpty\": true,\n            \"max\": false,\n            \"min\":
+    false,\n            \"rightSide\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"histogram_quantile(0.50, sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P50 (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.90,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }}  P90 (\U0001F510mTLS)\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.95,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P95 (\U0001F510mTLS)\",\n              \"refId\": \"C\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.99,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }}  P99 (\U0001F510mTLS)\",\n              \"refId\": \"D\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.50,
+    sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P50\",\n              \"refId\": \"E\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.90, sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P90\",\n              \"refId\": \"F\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.95, sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P95\",\n              \"refId\": \"G\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.99, sum(irate(istio_request_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P99\",\n              \"refId\": \"H\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Incoming Request Size
+    By Service Workload\",\n          \"tooltip\": {\n            \"shared\": true,\n
+    \           \"sort\": 0,\n            \"value_type\": \"individual\"\n          },\n
+    \         \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\":
+    null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\":
+    true,\n            \"values\": []\n          },\n          \"yaxes\": [\n            {\n
+    \             \"format\": \"decbytes\",\n              \"label\": null,\n              \"logBase\":
+    1,\n              \"max\": null,\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 8,\n            \"x\": 16,\n            \"y\": 12\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 96,\n          \"legend\":
+    {\n            \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\":
+    false,\n            \"hideEmpty\": true,\n            \"max\": false,\n            \"min\":
+    false,\n            \"rightSide\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"histogram_quantile(0.50, sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P50 (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.90,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }}  P90 (\U0001F510mTLS)\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.95,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P95 (\U0001F510mTLS)\",\n              \"refId\": \"C\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.99,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }}  P99 (\U0001F510mTLS)\",\n              \"refId\": \"D\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"histogram_quantile(0.50,
+    sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\", connection_security_policy!=\\\"mutual_tls\\\",
+    destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P50\",\n              \"refId\": \"E\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.90, sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P90\",\n              \"refId\": \"F\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.95, sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P95\",\n              \"refId\": \"G\",\n              \"step\": 2\n            },\n
+    \           {\n              \"expr\": \"histogram_quantile(0.99, sum(irate(istio_response_bytes_bucket{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace, le))\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace
+    }} P99\",\n              \"refId\": \"H\",\n              \"step\": 2\n            }\n
+    \         ],\n          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeRegions\":
+    [],\n          \"timeShift\": null,\n          \"title\": \"Response Size By Service
+    Workload\",\n          \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"decbytes\",\n              \"label\": null,\n              \"logBase\": 1,\n
+    \             \"max\": null,\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": false\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 0,\n            \"y\": 18\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 92,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"max\":
+    false,\n            \"min\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_received_bytes_total{reporter=\\\"destination\\\",
+    connection_security_policy=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace), 0.001)\",\n              \"format\":
+    \"time_series\",\n              \"hide\": false,\n              \"intervalFactor\":
+    1,\n              \"legendFormat\": \"{{ destination_workload }}.{{ destination_workload_namespace}}
+    (\U0001F510mTLS)\",\n              \"refId\": \"A\",\n              \"step\":
+    2\n            },\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_received_bytes_total{reporter=\\\"destination\\\",
+    connection_security_policy!=\\\"mutual_tls\\\", destination_service=~\\\"$service\\\",
+    destination_workload=~\\\"$dstwl\\\", destination_workload_namespace=~\\\"$dstns\\\"}[1m]))
+    by (destination_workload, destination_workload_namespace), 0.001)\",\n              \"format\":
+    \"time_series\",\n              \"intervalFactor\": 1,\n              \"legendFormat\":
+    \"{{ destination_workload }}.{{ destination_workload_namespace}}\",\n              \"refId\":
+    \"B\",\n              \"step\": 2\n            }\n          ],\n          \"thresholds\":
+    [],\n          \"timeFrom\": null,\n          \"timeRegions\": [],\n          \"timeShift\":
+    null,\n          \"title\": \"Bytes Received from Incoming TCP Connection\",\n
+    \         \"tooltip\": {\n            \"shared\": true,\n            \"sort\":
+    0,\n            \"value_type\": \"individual\"\n          },\n          \"type\":
+    \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\":
+    \"time\",\n            \"name\": null,\n            \"show\": true,\n            \"values\":
+    []\n          },\n          \"yaxes\": [\n            {\n              \"format\":
+    \"Bps\",\n              \"label\": null,\n              \"logBase\": 1,\n              \"max\":
+    null,\n              \"min\": \"0\",\n              \"show\": true\n            },\n
+    \           {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": true\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       },\n        {\n          \"aliasColors\": {},\n          \"bars\": false,\n
+    \         \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\":
+    \"prometheus\",\n          \"fieldConfig\": {\n            \"defaults\": {\n              \"custom\":
+    {}\n            },\n            \"overrides\": []\n          },\n          \"fill\":
+    1,\n          \"fillGradient\": 0,\n          \"gridPos\": {\n            \"h\":
+    6,\n            \"w\": 12,\n            \"x\": 12,\n            \"y\": 18\n          },\n
+    \         \"hiddenSeries\": false,\n          \"id\": 93,\n          \"legend\":
+    {\n            \"avg\": false,\n            \"current\": false,\n            \"max\":
+    false,\n            \"min\": false,\n            \"show\": true,\n            \"total\":
+    false,\n            \"values\": false\n          },\n          \"lines\": true,\n
+    \         \"linewidth\": 1,\n          \"links\": [],\n          \"nullPointMode\":
+    \"null\",\n          \"percentage\": false,\n          \"pluginVersion\": \"7.1.0\",\n
+    \         \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\":
+    \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n
+    \         \"stack\": false,\n          \"steppedLine\": false,\n          \"targets\":
+    [\n            {\n              \"expr\": \"round(sum(irate(istio_tcp_sent_bytes_total{connection_security_policy=\\\"mutual_tls\\\",
+    reporter=\\\"destination\\\", destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\",
+    destination_workload_namespace=~\\\"$dstns\\\"}[1m])) by (destination_workload,
+    destination_workload_namespace), 0.001)\",\n              \"format\": \"time_series\",\n
+    \             \"intervalFactor\": 1,\n              \"legendFormat\": \"{{ destination_workload
+    }}.{{destination_workload_namespace }} (\U0001F510mTLS)\",\n              \"refId\":
+    \"A\",\n              \"step\": 2\n            },\n            {\n              \"expr\":
+    \"round(sum(irate(istio_tcp_sent_bytes_total{connection_security_policy!=\\\"mutual_tls\\\",
+    reporter=\\\"destination\\\", destination_service=~\\\"$service\\\", destination_workload=~\\\"$dstwl\\\",
+    destination_workload_namespace=~\\\"$dstns\\\"}[1m])) by (destination_workload,
+    destination_workload_namespace), 0.001)\",\n              \"format\": \"time_series\",\n
+    \             \"intervalFactor\": 1,\n              \"legendFormat\": \"{{ destination_workload
+    }}.{{destination_workload_namespace }}\",\n              \"refId\": \"B\",\n              \"step\":
+    2\n            }\n          ],\n          \"thresholds\": [],\n          \"timeFrom\":
+    null,\n          \"timeRegions\": [],\n          \"timeShift\": null,\n          \"title\":
+    \"Bytes Sent to Incoming TCP Connection\",\n          \"tooltip\": {\n            \"shared\":
+    true,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n
+    \         },\n          \"type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\":
+    null,\n            \"mode\": \"time\",\n            \"name\": null,\n            \"show\":
+    true,\n            \"values\": []\n          },\n          \"yaxes\": [\n            {\n
+    \             \"format\": \"Bps\",\n              \"label\": null,\n              \"logBase\":
+    1,\n              \"max\": null,\n              \"min\": \"0\",\n              \"show\":
+    true\n            },\n            {\n              \"format\": \"short\",\n              \"label\":
+    null,\n              \"logBase\": 1,\n              \"max\": null,\n              \"min\":
+    null,\n              \"show\": true\n            }\n          ],\n          \"yaxis\":
+    {\n            \"align\": false,\n            \"alignLevel\": null\n          }\n
+    \       }\n      ],\n      \"title\": \"Service Workloads\",\n      \"type\":
+    \"row\"\n    }\n  ],\n  \"refresh\": \"1m\",\n  \"schemaVersion\": 26,\n  \"style\":
+    \"dark\",\n  \"tags\": [],\n  \"templating\": {\n    \"list\": [\n      {\n        \"current\":
+    {\n          \"selected\": true,\n          \"text\": \"default\",\n          \"value\":
+    \"default\"\n        },\n        \"hide\": 0,\n        \"includeAll\": false,\n
+    \       \"label\": null,\n        \"multi\": false,\n        \"name\": \"datasource\",\n
+    \       \"options\": [],\n        \"query\": \"prometheus\",\n        \"queryValue\":
+    \"\",\n        \"refresh\": 1,\n        \"regex\": \"\",\n        \"skipUrlSync\":
+    false,\n        \"type\": \"datasource\"\n      },\n      {\n        \"allValue\":
+    null,\n        \"current\": {},\n        \"datasource\": \"prometheus\",\n        \"definition\":
+    \"\",\n        \"hide\": 0,\n        \"includeAll\": false,\n        \"label\":
+    \"Service\",\n        \"multi\": false,\n        \"name\": \"service\",\n        \"options\":
+    [],\n        \"query\": \"label_values(destination_service)\",\n        \"refresh\":
+    1,\n        \"regex\": \"\",\n        \"skipUrlSync\": false,\n        \"sort\":
+    0,\n        \"tagValuesQuery\": \"\",\n        \"tags\": [],\n        \"tagsQuery\":
+    \"\",\n        \"type\": \"query\",\n        \"useTags\": false\n      },\n      {\n
+    \       \"allValue\": null,\n        \"current\": {\n          \"selected\": true,\n
+    \         \"text\": \"destination\",\n          \"value\": \"destination\"\n        },\n
+    \       \"datasource\": \"prometheus\",\n        \"definition\": \"\",\n        \"hide\":
+    0,\n        \"includeAll\": false,\n        \"label\": \"Reporter\",\n        \"multi\":
+    true,\n        \"name\": \"qrep\",\n        \"options\": [],\n        \"query\":
+    \"label_values(reporter)\",\n        \"refresh\": 1,\n        \"regex\": \"\",\n
+    \       \"skipUrlSync\": false,\n        \"sort\": 2,\n        \"tagValuesQuery\":
+    \"\",\n        \"tags\": [],\n        \"tagsQuery\": \"\",\n        \"type\":
+    \"query\",\n        \"useTags\": false\n      },\n      {\n        \"allValue\":
+    null,\n        \"current\": {},\n        \"datasource\": \"prometheus\",\n        \"definition\":
+    \"\",\n        \"hide\": 0,\n        \"includeAll\": true,\n        \"label\":
+    \"Client Workload Namespace\",\n        \"multi\": true,\n        \"name\": \"srcns\",\n
+    \       \"options\": [],\n        \"query\": \"query_result(sum(istio_requests_total{reporter=\\\"$qrep\\\",
+    destination_service=\\\"$service\\\"}) by (source_workload_namespace) or sum(istio_tcp_sent_bytes_total{reporter=\\\"$qrep\\\",
+    destination_service=~\\\"$service\\\"}) by (source_workload_namespace))\",\n        \"refresh\":
+    1,\n        \"regex\": \"/.*namespace=\\\"([^\\\"]*).*/\",\n        \"skipUrlSync\":
+    false,\n        \"sort\": 2,\n        \"tagValuesQuery\": \"\",\n        \"tags\":
+    [],\n        \"tagsQuery\": \"\",\n        \"type\": \"query\",\n        \"useTags\":
+    false\n      },\n      {\n        \"allValue\": null,\n        \"current\": {},\n
+    \       \"datasource\": \"prometheus\",\n        \"definition\": \"\",\n        \"hide\":
+    0,\n        \"includeAll\": true,\n        \"label\": \"Client Workload\",\n        \"multi\":
+    true,\n        \"name\": \"srcwl\",\n        \"options\": [],\n        \"query\":
+    \"query_result(sum(istio_requests_total{reporter=\\\"$qrep\\\", destination_service=~\\\"$service\\\",
+    source_workload_namespace=~\\\"$srcns\\\"}) by (source_workload) or sum(istio_tcp_sent_bytes_total{reporter=\\\"$qrep\\\",
+    destination_service=~\\\"$service\\\", source_workload_namespace=~\\\"$srcns\\\"})
+    by (source_workload))\",\n        \"refresh\": 1,\n        \"regex\": \"/.*workload=\\\"([^\\\"]*).*/\",\n
+    \       \"skipUrlSync\": false,\n        \"sort\": 3,\n        \"tagValuesQuery\":
+    \"\",\n        \"tags\": [],\n        \"tagsQuery\": \"\",\n        \"type\":
+    \"query\",\n        \"useTags\": false\n      },\n      {\n        \"allValue\":
+    null,\n        \"current\": {},\n        \"datasource\": \"prometheus\",\n        \"definition\":
+    \"\",\n        \"hide\": 0,\n        \"includeAll\": true,\n        \"label\":
+    \"Service Workload Namespace\",\n        \"multi\": true,\n        \"name\": \"dstns\",\n
+    \       \"options\": [],\n        \"query\": \"query_result(sum(istio_requests_total{reporter=\\\"destination\\\",
+    destination_service=\\\"$service\\\"}) by (destination_workload_namespace) or
+    sum(istio_tcp_sent_bytes_total{reporter=\\\"destination\\\", destination_service=~\\\"$service\\\"})
+    by (destination_workload_namespace))\",\n        \"refresh\": 1,\n        \"regex\":
+    \"/.*namespace=\\\"([^\\\"]*).*/\",\n        \"skipUrlSync\": false,\n        \"sort\":
+    2,\n        \"tagValuesQuery\": \"\",\n        \"tags\": [],\n        \"tagsQuery\":
+    \"\",\n        \"type\": \"query\",\n        \"useTags\": false\n      },\n      {\n
+    \       \"allValue\": null,\n        \"current\": {},\n        \"datasource\":
+    \"prometheus\",\n        \"definition\": \"\",\n        \"hide\": 0,\n        \"includeAll\":
+    true,\n        \"label\": \"Service Workload\",\n        \"multi\": true,\n        \"name\":
+    \"dstwl\",\n        \"options\": [],\n        \"query\": \"query_result( sum(istio_requests_total{reporter=\\\"destination\\\",
+    destination_service=~\\\"$service\\\", destination_workload_namespace=~\\\"$dstns\\\"})
+    by (destination_workload) or sum(istio_tcp_sent_bytes_total{reporter=\\\"destination\\\",
+    destination_service=~\\\"$service\\\", destination_workload_namespace=~\\\"$dstns\\\"})
+    by (destination_workload))\",\n        \"refresh\": 1,\n        \"regex\": \"/.*workload=\\\"([^\\\"]*).*/\",\n
+    \       \"skipUrlSync\": false,\n        \"sort\": 3,\n        \"tagValuesQuery\":
+    \"\",\n        \"tags\": [],\n        \"tagsQuery\": \"\",\n        \"type\":
+    \"query\",\n        \"useTags\": false\n      }\n    ]\n  },\n  \"time\": {\n
+    \   \"from\": \"now-5m\",\n    \"to\": \"now\"\n  },\n  \"timepicker\": {\n    \"refresh_intervals\":
+    [\n      \"5m\",\n      \"15m\",\n      \"30m\",\n      \"1h\",\n      \"2h\",\n
+    \     \"1d\"\n    ],\n    \"time_options\": [\n      \"5m\",\n      \"15m\",\n
+    \     \"1h\",\n      \"6h\",\n      \"12h\",\n      \"24h\",\n      \"2d\",\n
+    \     \"7d\",\n      \"30d\"\n    ]\n  },\n  \"timezone\": \"\",\n  \"title\":
+    \"Istio Service Dashboard\",\n  \"uid\": \"LJ_uJAvmk\",\n  \"version\": 1\n}\n"

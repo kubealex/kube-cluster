@@ -1752,7 +1752,7 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: istio-dashboards
+  name: istio-pilot-dashboard
   namespace: monitoring
   labels:
     grafana-sighup-dashboard: default
