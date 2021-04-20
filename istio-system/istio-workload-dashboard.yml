@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: istio-performance-dashboard
+  name: istio-workload-dashboard
   namespace: monitoring
   labels:
     grafana-sighup-dashboard: default
