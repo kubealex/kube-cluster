@@ -1,0 +1,14 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: istio-controlplane
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: istio-operator
+  interval: 5m
+  path: "./istio-controlplane"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
