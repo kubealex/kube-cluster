@@ -48,26 +48,26 @@ spec:
             protocol: TCP
             targetPort: 15443
             nodePort: 32543
-          - name: tcp-amq
-            nodePort: 32400
-            port: 32400
+          - name: tcp-generic
+            nodePort: 32500
+            port: 32500
             protocol: TCP
-            targetPort: 32400
+            targetPort: 32500
           - name: tcp-generic-0
-            nodePort: 32401
-            port: 32401
+            nodePort: 32501
+            port: 32501
             protocol: TCP
-            targetPort: 32401
+            targetPort: 32501
           - name: tcp-generic-1
-            nodePort: 32402
-            port: 32402
+            nodePort: 32502
+            port: 32502
             protocol: TCP
-            targetPort: 32402
+            targetPort: 32502
           - name: tcp-generic-2
-            nodePort: 32403
-            port: 32403
+            nodePort: 32503
+            port: 32503
             protocol: TCP
-            targetPort: 32403 
+            targetPort: 32503 
     istiodRemote:
       enabled: false
     pilot:
