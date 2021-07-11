@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
-- nfs-provisioner-k.yml
+#- nfs-provisioner-k.yml
 - tekton-k.yml
 - istio-operator-k.yml
 - istio-system-k.yml
