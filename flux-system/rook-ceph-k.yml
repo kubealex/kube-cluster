@@ -2,7 +2,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
   name: rook-ceph
-  namespace: rook-ceph
+  namespace: flux-system
 spec:
   interval: 5m
   path: "./rook-ceph"
