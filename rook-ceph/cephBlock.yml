@@ -1,0 +1,48 @@
+#################################################################################################################
+# Create an object store with settings for replication in a production environment. A minimum of 3 hosts with
+# OSDs are required in this example.
+#  kubectl create -f object.yaml
+#################################################################################################################
+
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStore
+metadata:
+  name: my-store
+  namespace: rook-ceph # namespace:cluster
+spec:
+  metadataPool:
+    failureDomain: host
+    replicated:
+      size: 3
+      requireSafeReplicaSize: true
+    parameters:
+      compression_mode: none
+  dataPool:
+    failureDomain: host
+    replicated:
+      size: 3
+      requireSafeReplicaSize: true
+    parameters:
+      compression_mode: none
+  preservePoolsOnDelete: false
+  gateway:
+    port: 80
+    instances: 1
+    placement:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - rook-ceph-rgw
+              topologyKey: kubernetes.io/hostname
+  healthCheck:
+    bucket:
+      disabled: false
+      interval: 60s
+    livenessProbe:
+      disabled: false
