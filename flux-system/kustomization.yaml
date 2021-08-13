@@ -9,3 +9,4 @@ resources:
 - istio-system-k.yml
 - monitoring-k.yml
 - rook-ceph-k.yml
+- kyverno-k.yml
