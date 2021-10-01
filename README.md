@@ -3,3 +3,4 @@
 Added:
 
 - istio
+- argocd
