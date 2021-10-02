@@ -4,3 +4,4 @@ Added:
 
 - istio
 - argocd
+- kyverno
