@@ -5,3 +5,4 @@ Added:
 - istio
 - argocd
 - kyverno
+- tekton
