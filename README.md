@@ -7,4 +7,4 @@ Added:
 - kyverno
 - tekton
 - mediaserver TODO
-- 
+- graphana
