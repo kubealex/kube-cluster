@@ -8,4 +8,4 @@ Added:
 - tekton
 - mediaserver TODO
 - graphana
-- pr
+- pro
