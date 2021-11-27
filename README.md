@@ -9,3 +9,4 @@ Added:
 - mediaserver TODO
 - graphana
 - prometheus
+- flux-internals
