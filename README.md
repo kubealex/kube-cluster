@@ -10,4 +10,4 @@ Added:
 - graphana
 - prometheus
 - flux-internals
-- rook
+- rook-ceph
