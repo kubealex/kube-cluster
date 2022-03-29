@@ -11,4 +11,3 @@ Added:
 - prometheus
 - flux-internals
 - rook-ceph
-- gr
