@@ -6,7 +6,6 @@ Added:
 - argocd
 - kyverno
 - tekton
-- mediaserver TODO
 - graphana
 - prometheus
 - flux-internals
